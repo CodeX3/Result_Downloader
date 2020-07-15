@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: selenium-components
+Version: 0.2
+Summary: Page objects for common components
+Home-page: https://github.com/defactto/selenium-components
+Author: Jernej Makovsek
+Author-email: jernej.makovsek@gmail.com
+License: Apache 2.0
+Download-URL: https://github.com/defactto/selenium-components/archive/0.2.tar.gz
+Keywords: testing,selenium,utils,webdriver,components,selenium-components
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: selenium
+Requires-Dist: selenium-utils
+
+UNKNOWN
+
+

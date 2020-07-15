@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: selenium-configurator
+Version: 0.1.1
+Summary: Helper API to define multiple webdrivers in config files.
+Home-page: https://github.com/anybox/selenium-configurator
+Author: Pierre Verkest
+Author-email: pverkest@anybox.fr
+License: LGPL-3.0
+Keywords: nose selenium CI
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: selenium
+Requires-Dist: pyyaml
+
+=====================
+Selenium Configurator
+=====================
+
+.. image:: https://api.travis-ci.org/anybox/selenium-configurator.svg?branch=master
+    :target: https://travis-ci.org/anybox/selenium-configurator
+    :alt: Travis state
+
+.. image:: https://readthedocs.org/projects/selenium-configurator/badge/?version=stable
+    :target: https://selenium-configurator.readthedocs.io/en/stable
+    :alt: Documentation Status
+
+This library provide an helper api for selenium launchers. it prepares multiple
+selenium web drivers from a configuration file. This aims to help launchers to
+run 1 task over multiple browsers through various selenium web drivers (local,
+grid, cloud provider...).
+
+Resources
+=========
+
+- `Documentation <https://selenium-configurator.readthedocs.org>`_
+- `Issue Tracker <https://github.com/anybox/selenium-configurator/issues>`_
+- `Code <https://github.com/anybox/selenium-configurator/>`_
+
+
+Licence
+=======
+
+.. image:: http://www.gnu.org/graphics/lgplv3-88x31.png
+   :target: http://www.gnu.org/licenses/lgpl-3.0.txt
+   :alt: GNU Lesser General Public License v3 (LGPL-3.0)
+
+0.1.1 (2019-07-24)
+------------------
+
+- Ignore InvalidSessionIdException while quitting webdriver
+- Do not use deprecated assert method
+- Support version 3
+- Use geckodriver to test firefox
+
+0.1 (2016-06-15)
+----------------
+
+- Initial version
+
+

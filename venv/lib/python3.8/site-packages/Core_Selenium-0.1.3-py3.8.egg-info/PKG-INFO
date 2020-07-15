@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: Core-Selenium
+Version: 0.1.3
+Summary: Selenium framework source code
+Home-page: http://tfs.logigear.com/SD/SeleniumCore/_git/PythonSeleniumCore
+Author: Khoi Ngo
+Author-email: quainhan100@gmail.com
+License: MIT
+Description: Example code
+        
+        To use (with caution), simply do::
+        
+            >>> from main.python.com_logigear import *
+            >>> button_a = Button.Id("id")
+            >>> button_a.click()
+Keywords: selenium core ngo anh khoi
+Platform: UNKNOWN

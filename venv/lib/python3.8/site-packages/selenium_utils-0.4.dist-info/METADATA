@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: selenium-utils
+Version: 0.4
+Summary: Common utils for working with Selenium
+Home-page: https://github.com/defactto/selenium-utils
+Author: Jernej Makovsek
+Author-email: jernej.makovsek@gmail.com
+License: Apache 2.0
+Download-URL: https://github.com/defactto/selenium-utils/archive/0.1.tar.gz
+Keywords: testing,selenium,utils,webdriver
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: selenium
+
+UNKNOWN
+
+

@@ -1,0 +1,123 @@
+Metadata-Version: 2.1
+Name: selenium-library
+Version: 0.0.3
+Summary: A human readable wrapper class for selenium
+Home-page: https://github.com/janmarkuslanger/selenium-library
+Author: Jan-Markus Langer
+Author-email: janmarkuslanger10121994@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: certifi (==2019.9.11)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: colorama (==0.4.1)
+Requires-Dist: configparser (==4.0.2)
+Requires-Dist: crayons (==0.3.0)
+Requires-Dist: entrypoints (==0.3)
+Requires-Dist: flake8 (==3.7.9)
+Requires-Dist: idna (==2.8)
+Requires-Dist: Mako (==1.1.0)
+Requires-Dist: Markdown (==3.1.1)
+Requires-Dist: MarkupSafe (==1.1.1)
+Requires-Dist: mccabe (==0.6.1)
+Requires-Dist: pdoc3 (==0.7.2)
+Requires-Dist: pycodestyle (==2.5.0)
+Requires-Dist: pyflakes (==2.1.1)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: selenium (==3.141.0)
+Requires-Dist: urllib3 (==1.25.7)
+Requires-Dist: webdriver-manager (==2.3.0)
+
+Module selenium_library
+=======================
+
+Sub-modules
+-----------
+* selenium_library.base
+
+Classes
+-------
+
+`Base(browser='chrome', headless=True, window_width=1920, window_height=1080)`
+:   Base selenium
+
+    Example:
+        from selenium_library import Base
+
+        session = Base(headless=False)
+        session.open('https://www.google.de')
+        input = session.element('[name="q"]')
+        session.click(input)
+        session.send_keys(input, 'pipi')
+
+    Init session vars
+
+    Args:
+    browser (str): Browser name
+    headlesss (boolean): Hide browser
+    window_width (int): Window width
+    window_height (int): Window height
+
+    ### Methods
+
+    `clear_keys(self, selector_or_element)`
+    :   Clear keys from element
+
+        Args:
+            selector_or_element [str, WebElement]
+
+    `click(self, selector_or_element)`
+    :   Try to click on an element
+
+        Args:
+            selector_or_element [str, WebElement]
+
+    `close(self)`
+    :   Close the current session
+
+    `element(self, selector)`
+    :   Try to find an element in dom
+
+        Returns [None]: Element or None
+
+    `elements(self, selector)`
+    :   Try to find every element in dom
+            If there is no element it returns None
+
+        Args:
+            selector (str): DOM selector
+
+
+        Returns [None, list]: List of elements or None
+
+    `get_url(self)`
+    :   Get the current url from the session
+
+        Returns (str): Current url
+
+    `launch_browser(self)`
+    :   Launch browser and create a session
+
+    `open(self, url)`
+    :   Open a new url in the session
+
+    `send_keys(self, selector_or_element, keys)`
+    :   Send keys to an element
+
+        Args:
+            selector_or_element [str, WebElement]
+            keys (str): Keys to send
+
+    `wait(self, time=1, is_random=False, min=1, max=10)`
+    :   Wait a specific time or random
+
+        Args:
+            time (int): Time to stop script
+            is_random (boolean): Waits a random time if true
+            min (int): Minium time to wait if random
+            max (int): Max time to wait if random
+
