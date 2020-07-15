@@ -1,0 +1,21 @@
+1594816221961	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile9DnSG3"
+*** You are running in headless mode.
+console.error: Enterprise Policies: 
+  Error parsing JSON file
+JavaScript error: resource://activity-stream/lib/Screenshots.jsm, line 127: TypeError: cache is undefined
+JavaScript error: resource://activity-stream/lib/Screenshots.jsm, line 127: TypeError: cache is undefined
+JavaScript error: resource://activity-stream/lib/Screenshots.jsm, line 127: TypeError: cache is undefined
+JavaScript error: resource://activity-stream/lib/Screenshots.jsm, line 127: TypeError: cache is undefined
+JavaScript error: resource://activity-stream/lib/Screenshots.jsm, line 127: TypeError: cache is undefined
+JavaScript error: resource://activity-stream/lib/Screenshots.jsm, line 127: TypeError: cache is undefined
+JavaScript error: resource://activity-stream/lib/Screenshots.jsm, line 127: TypeError: cache is undefined
+1594816241790	Marionette	INFO	Listening on port 43651
+1594816241841	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/pdfjs.js, line 31: NS_ERROR_FACTORY_NOT_REGISTERED: 
+JavaScript error: resource:///modules/pdfjs.js, line 31: NS_ERROR_FACTORY_NOT_REGISTERED: 
+
+(firefox:3017): GLib-GObject-CRITICAL **: 12:30:44.702: g_object_get: assertion 'G_IS_OBJECT (object)' failed
+1594816248492	Marionette	INFO	Stopped listening on port 43651
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
