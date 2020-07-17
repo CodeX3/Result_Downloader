@@ -1,31 +1,63 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
-options = Options()
-options.headless = True
 
-profile = webdriver.FirefoxProfile()
-profile.set_preference("browser.download.folderList", 2)
-profile.set_preference("browser.download.manager.showWhenStarting", False)
-profile.set_preference("browser.download.dir", '/home/dh12/PycharmProjects/ResultDownloader/result')
-profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
-profile.set_preference("pdfjs.disabled", True)
 
-driver = webdriver.Firefox(firefox_profile=profile,options=options)
-driver.get("http://14.139.185.44/online/UG/bsc3semresult2019/bsc3semresult.php")
-RegNo = driver.find_element_by_id("regnum")
-DoB = driver.find_element_by_id("dob")
+def get_result_type0(url, id_num, pwd, path):
+    options = Options()
+    options.headless = True
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("browser.download.folderList", 2)
+    profile.set_preference("browser.download.manager.showWhenStarting", False)
+    profile.set_preference("browser.download.dir", path)
+    profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
+    profile.set_preference("pdfjs.disabled", True)
+    driver = webdriver.Firefox(firefox_profile=profile, options=options)
+    driver.get(url)
+    if driver.find_elements_by_id("regnum"):
+        RegNo = driver.find_element_by_id("regnum")
+        RegNo.send_keys(id_num)
+        if driver.find_elements_by_id("dob"):
+            DoB = driver.find_element_by_id("dob")
+            DoB.send_keys(pwd)
+        login = driver.find_element_by_name('sub')
+        login.click()
+        driver.close()
+    elif driver.find_element_by_id("regno"):
+        temp = driver.find_element_by_id("regno")
+        temp.send_keys(id_num)
+        if driver.find_element_by_id("dob"):
+            temp1 = driver.find_element_by_id("dob")
+            temp1.send_keys(pwd)
+        if driver.find_elements_by_name('but'):
+            login = driver.find_element_by_name('but')
+            login.click()
 
-'''register number and dob'''
-num=''
-dob=''
+        login = driver.find_element("SUBMIT")
+        login.click()
+        driver.close()
+    else:
+        print("code missing")
 
-RegNo.send_keys(num)
-DoB.send_keys(dob)
 
-login = driver.find_element_by_name('sub')
-login.click()
+'''
+BCA-BSc
+http://14.139.185.44/online/UG/bsc3semresult2019/bsc3semresult.php
 
-print("completed")
 
-driver.close()
+BBA-Bcom
+http://14.139.185.44/online/UG/commerce3sem2019result/index.php
+
+
+BA/BBM/BSW
+http://14.139.185.44/online/UG/ba3semresult/ba3semresultsup.php
+'''
+
+link = ""
+register_number = ''
+date_of_birth = ''
+download_path = ''
+try:
+    get_result_type0(link, register_number, date_of_birth, download_path)
+except Exception as e:
+    print(e) 
