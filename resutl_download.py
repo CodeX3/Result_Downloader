@@ -23,18 +23,22 @@ def get_result_type0(url, id_num, pwd, path):
         login = driver.find_element_by_name('sub')
         login.click()
         driver.close()
-    elif driver.find_element_by_id("regno"):
-        temp = driver.find_element_by_id("regno")
-        temp.send_keys(id_num)
+    elif driver.find_element_by_name("regno"):
+        if driver.find_element_by_name("regno"):
+            temp = driver.find_element_by_name("regno")
+            temp.send_keys(id_num)
+        else :
+            temp = driver.find_element_by_id("regno")
+            temp.send_keys(id_num)
         if driver.find_element_by_id("dob"):
             temp1 = driver.find_element_by_id("dob")
             temp1.send_keys(pwd)
         if driver.find_elements_by_name('but'):
             login = driver.find_element_by_name('but')
             login.click()
-
-        login = driver.find_element("SUBMIT")
-        login.click()
+        else:
+            login = driver.find_element_by_xpath('/html/body/form/table/tbody/tr[5]/td/input')
+            login.click()
         driver.close()
     else:
         print("code missing")
@@ -50,13 +54,16 @@ http://14.139.185.44/online/UG/commerce3sem2019result/index.php
 
 
 BA/BBM/BSW
-http://14.139.185.44/online/UG/ba3semresult/ba3semresultsup.php
+http://14.139.185.44/online/UG/ba3semresult/ba3semresult.php
+
+
 '''
 
-link = ""
+link = ''
 register_number = ''
 date_of_birth = ''
 download_path = ''
+
 try:
     get_result_type0(link, register_number, date_of_birth, download_path)
 except Exception as e:
