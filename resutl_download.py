@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
 
+
 def get_result_type0(url, id_num, pwd, path):
     options = Options()
     options.headless = True
@@ -59,4 +60,4 @@ download_path = ''
 try:
     get_result_type0(link, register_number, date_of_birth, download_path)
 except Exception as e:
-    print(e)
+    print(e) 
