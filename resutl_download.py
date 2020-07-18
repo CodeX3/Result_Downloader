@@ -1,7 +1,6 @@
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.options import Options
-
-
 
 def get_result_type0(url, id_num, pwd, path):
     options = Options()
@@ -22,12 +21,12 @@ def get_result_type0(url, id_num, pwd, path):
             DoB.send_keys(pwd)
         login = driver.find_element_by_name('sub')
         login.click()
-        driver.close()
+        driver.quit()
     elif driver.find_element_by_name("regno"):
         if driver.find_element_by_name("regno"):
             temp = driver.find_element_by_name("regno")
             temp.send_keys(id_num)
-        else :
+        else:
             temp = driver.find_element_by_id("regno")
             temp.send_keys(id_num)
         if driver.find_element_by_id("dob"):
@@ -39,7 +38,7 @@ def get_result_type0(url, id_num, pwd, path):
         else:
             login = driver.find_element_by_xpath('/html/body/form/table/tbody/tr[5]/td/input')
             login.click()
-        driver.close()
+        driver.quit()
     else:
         print("code missing")
 
@@ -66,5 +65,7 @@ download_path = ''
 
 try:
     get_result_type0(link, register_number, date_of_birth, download_path)
+except TimeoutException as e:
+    get_result_type0(link, register_number, date_of_birth, download_path)
 except Exception as e:
-    print(e) 
+    print(e)
