@@ -1,4 +1,6 @@
 from selenium import webdriver
+import os
+import platform
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.options import Options
 import sqlite3
@@ -13,12 +15,13 @@ def get_result_type0(url, id_num, pwd, path):
     options = Options()
     options.headless = True
     profile = webdriver.FirefoxProfile()
-    profile.set_preference("browser.download.folderList", 2)
+    profile.set_preference("browser.download.folderList", 0)
     profile.set_preference("browser.download.manager.showWhenStarting", False)
-    profile.set_preference("browser.download.dir", path)
+    profile.set_preference("browser.download.dir",path)
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
     profile.set_preference("pdfjs.disabled", True)
-    driver = webdriver.Firefox(firefox_profile=profile, options=options)
+
+    driver = webdriver.Firefox(firefox_profile=profile, options=options, executable_path=r'C:/geckodriver.exe')
     driver.get(url)
     if driver.find_elements_by_id("regnum"):
         RegNo = driver.find_element_by_id("regnum")
@@ -48,6 +51,9 @@ def get_result_type0(url, id_num, pwd, path):
         driver.quit()
     else:
         print("code missing")
+    if platform.system() in "Windows":
+        os.system("Taskkill /IM firefox.exe /F")
+
 
 
 def log(exception, reg, value):
@@ -65,7 +71,7 @@ def get_result_type1(url, result_db, path):
     profile.set_preference("browser.download.dir", path)
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
     profile.set_preference("pdfjs.disabled", True)
-    driver = webdriver.Firefox(firefox_profile=profile, options=options)
+    driver = webdriver.Firefox(firefox_profile=profile, options=options, executable_path=r'C:/geckodriver.exe')
     driver.get(url)
     no = 0
     for _ in result_db:
@@ -106,6 +112,8 @@ def get_result_type1(url, result_db, path):
             log(exception, reg=id_num, value=pwd)
         no += 1
     driver.quit()
+    if platform.system() in "Windows":
+        os.system("Taskkill /IM firefox.exe /F")
 
 
 def get_db(db_path):
@@ -138,22 +146,25 @@ register_number = ''
 date_of_birth = ''
 download_path = ''
 
-'''individual '''
-try:
-    get_result_type0(link, register_number, date_of_birth, download_path)
-except TimeoutException as e:
-    get_result_type0(link, register_number, date_of_birth, download_path)
-except Exception as e:
-    log(e, reg=register_number, value=date_of_birth)
-    print(e)
+def individual(link,register_number,date_of_birth,download_path):
+    try:
+        get_result_type0(link, register_number, date_of_birth, download_path)
+    except TimeoutException as e:
+        get_result_type0(link, register_number, date_of_birth, download_path)
+    except Exception as e:
+        log(e, reg=register_number, value=date_of_birth)
+        print(e)
+
 
 '''By database'''
-download_path = ''
-result_db = get_db(db_path)
 
-try:
-    get_result_type1(link, result_db, download_path)
-except TimeoutException as e:
-    get_result_type1(link, result_db, download_path)
-except Exception as e:
-    print(e)
+
+def by_database(link,db_path,download_path):
+    result_db = get_db(db_path)
+    try:
+        get_result_type1(link, result_db, download_path)
+    except TimeoutException as e:
+        get_result_type1(link, result_db, download_path)
+    except Exception as e:
+        print(e)
+
