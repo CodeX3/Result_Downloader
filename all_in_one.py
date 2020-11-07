@@ -208,6 +208,8 @@ def By_database(link, db_path, download_path):
 root = tk.Tk()
 root.title("Result Downloader")
 root.geometry("700x500+300+120")
+p1 = tk.PhotoImage(file ='cloud-computing.png')
+root.iconphoto(False,p1)
 root.resizable(0, 0)
 heading = tk.Label(root, text='Result Downloader', font=('Times Roman New', 40, 'bold'))
 heading.grid(row=0, column=1)
