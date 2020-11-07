@@ -15,13 +15,13 @@ def get_result_type0(url, id_num, pwd, path):
     options = Options()
     options.headless = True
     profile = webdriver.FirefoxProfile()
-    profile.set_preference("browser.download.folderList", 0)
+    profile.set_preference("browser.download.folderList", 2)
     profile.set_preference("browser.download.manager.showWhenStarting", False)
     profile.set_preference("browser.download.dir",path)
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
     profile.set_preference("pdfjs.disabled", True)
 
-    driver = webdriver.Firefox(firefox_profile=profile, options=options, executable_path=r'C:/geckodriver.exe')
+    driver = webdriver.Firefox(firefox_profile=profile, options=options)
     driver.get(url)
     if driver.find_elements_by_id("regnum"):
         RegNo = driver.find_element_by_id("regnum")
@@ -71,7 +71,7 @@ def get_result_type1(url, result_db, path):
     profile.set_preference("browser.download.dir", path)
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
     profile.set_preference("pdfjs.disabled", True)
-    driver = webdriver.Firefox(firefox_profile=profile, options=options, executable_path=r'C:/geckodriver.exe')
+    driver = webdriver.Firefox(firefox_profile=profile, options=options)
     driver.get(url)
     no = 0
     for _ in result_db:
