@@ -19,7 +19,7 @@ logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s :: %(l
                     datefmt='%m-%d-%Y %I:%M:%S %p')
 
 
-def get_result_type0(url, id_num, pwd, path):
+def get_result_type0(url, id_num, pwd, path="C:\\Users\\ajith\Document"):
     options = Options()
     options.headless = True
     profile = webdriver.FirefoxProfile()
@@ -29,7 +29,7 @@ def get_result_type0(url, id_num, pwd, path):
     profile.set_preference("browser.download.defaultFolder", path)
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
     profile.set_preference("pdfjs.disabled", True)
-    driver = webdriver.Firefox(firefox_profile=profile, options=options)
+    driver = webdriver.Firefox(firefox_profile=profile, options=options )
     driver.get(url)
     if driver.find_elements_by_id("regnum"):
         RegNo = driver.find_element_by_id("regnum")
