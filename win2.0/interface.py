@@ -1,5 +1,4 @@
 import platform
-import threading
 import os
 import socket
 from selenium import webdriver
@@ -14,13 +13,11 @@ from urllib.error import URLError, HTTPError
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 import subprocess
-
-t = threading.currentThread()
 logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s :: %(levelname)s - %(message)s',
                     datefmt='%m-%d-%Y %I:%M:%S %p')
 
 
-def get_result_type0(url, id_num, pwd, path="C:\\Users\\ajith\Document"):
+def get_result_type0(url, id_num, pwd, path):
     options = Options()
     options.headless = True
     profile = webdriver.FirefoxProfile()
