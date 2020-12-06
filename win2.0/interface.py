@@ -72,7 +72,7 @@ def log(exception, reg, value):
 
 def get_result_type1(url, result_db, path):
     options = Options()
-    options.headless = False
+    options.headless = True
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.download.folderList", 2)
     profile.set_preference("browser.download.manager.showWhenStarting", False)
