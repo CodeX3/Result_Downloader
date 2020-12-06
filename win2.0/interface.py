@@ -1,7 +1,4 @@
-# windows - tested
-# linux - untested
 import platform
-import threading
 import os
 import socket
 from selenium import webdriver
@@ -16,13 +13,11 @@ from urllib.error import URLError, HTTPError
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 import subprocess
-
-t = threading.currentThread()
 logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s :: %(levelname)s - %(message)s',
                     datefmt='%m-%d-%Y %I:%M:%S %p')
 
 
-def get_result_type0(url, id_num, pwd, path="C:\\Users\\ajith\Document"):
+def get_result_type0(url, id_num, pwd, path):
     options = Options()
     options.headless = True
     profile = webdriver.FirefoxProfile()
@@ -84,11 +79,11 @@ def get_result_type1(url, result_db, path):
     profile.set_preference("browser.download.dir", path)
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
     profile.set_preference("pdfjs.disabled", True)
-    driver = webdriver.Firefox(firefox_profile=profile, options=options)
+    driver = webdriver.Firefox(firefox_profile=profile, options=options, executable_path='../driver/geckodriver.exe')
     driver.get(url)
     no = 0
-    test = True
     for _ in result_db:
+        root.update()
         id_num = result_db[no][0]
         pwd = result_db[no][1]
         test = True
@@ -202,6 +197,8 @@ def personal_window():
         if CheckVar.get():
             url_link = link_entry.get()
             path = pathentry.get()
+            if platform.system() in "Windows":
+                path = path.replace("/", "\\")
             reg = reg_no_entry.get()
             dob = dob_entry.get()
             individual(url_link, reg, dob, path)
@@ -214,26 +211,23 @@ def personal_window():
     download_personal.grid(row=9, column=1)
 
     root.mainloop()
-
-
 def database_window():
-    root = tk.Tk()
-    root.title("Database download")
-    root.geometry("500x100+300+100")
-    root.resizable(0, 0)
-    By_dataBaseL = tk.Label(root, text="By DB", font=('calibre', 15, 'bold', 'underline'))
+    Droot = tk.Tk()
+    Droot.title("Database download")
+    Droot.geometry("500x100+300+100")
+    Droot.resizable(0, 0)
+    By_dataBaseL = tk.Label(Droot, text="By DB", font=('calibre', 15, 'bold', 'underline'))
     By_dataBaseL.grid(row=0)
-    dataBaseL = tk.Label(root, text="DB   :", font=('calibre', 10, 'bold'))
+    dataBaseL = tk.Label(Droot, text="DB   :", font=('calibre', 10, 'bold'))
     dataBaseL.grid(row=1)
+
+    def db_select_path():
+        DB_path =filedialog.askopenfilename()
+        DB_pathentry.insert(tk.END,DB_path)
     DBpathvar = tk.StringVar()
-
-    def select_path():
-        Dbpath = filedialog.askopenfilename()
-        DBpathvar.set(Dbpath)
-
-    DB_pathentry = tk.Entry(root, textvariable=DBpathvar, font=('calibre', 10, 'normal'), width=40)
+    DB_pathentry = tk.Entry(Droot, textvariable=DBpathvar, font=('calibre', 10, 'normal'), width=40)
     DB_pathentry.grid(row=1, column=1)
-    DB_pathbtn = tk.Button(root, text='select Database', command=select_path)
+    DB_pathbtn = tk.Button(Droot, text='select Database', command=db_select_path)
     DB_pathbtn.grid(row=1, column=2)
     DB_pathbtn.place(x=360, y=26)
 
@@ -243,6 +237,8 @@ def database_window():
             if link_entry.get() and pathentry.get():
                 link = link_entry.get()
                 dpath = pathentry.get()
+                if platform.system() in "Windows":
+                    dpath = dpath.replace("/", "\\")
                 By_database(link, path, dpath)
             else:
                 textBox.insert(tk.END, "check link and download path field \n")
@@ -250,10 +246,10 @@ def database_window():
         else:
             textBox.insert(tk.END, "not working\n")
 
-    DB_download = tk.Button(root, text="Download", command=database_download, font=('Arial', 10, 'bold'), width=10,
+    DB_download = tk.Button(Droot, text="Download", command=database_download, font=('Arial', 10, 'bold'), width=10,
                             height=2)
     DB_download.grid(row=2, column=1)
-    root.mainloop()
+    Droot.mainloop()
 
 
 def individual(link, register_number, date_of_birth, download_path):
@@ -399,6 +395,9 @@ menubar = tk.Menu()
 
 
 def exit():
+    if platform.system() in "Windows":
+        os.system("Taskkill /IM firefox.exe /F")
+
     quit()
 
 
@@ -413,5 +412,14 @@ menu_list = tk.Menu(menubar, tearoff=0)
 menu_list.add_command(label="view-log", command=view_log)
 menu_list.add_command(label="Exit", command=exit)
 menubar.add_cascade(label="Options", menu=menu_list, font=("arial", 10))
+root.config(menu=menubar)
+def about():
+    print("hello")
+def how_to_use():
+    print("hello")
+menu_list = tk.Menu(menubar, tearoff=0)
+menu_list.add_command(label="About", command=about)
+menu_list.add_command(label="How-To-Use", command=how_to_use)
+menubar.add_cascade(label="Info", menu=menu_list, font=("arial", 10))
 root.config(menu=menubar)
 root.mainloop()
