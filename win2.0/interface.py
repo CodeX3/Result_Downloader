@@ -1,3 +1,4 @@
+import webbrowser
 import platform
 import os
 import socket
@@ -416,7 +417,7 @@ root.config(menu=menubar)
 def about():
     print("hello")
 def how_to_use():
-    print("hello")
+    webbrowser.open("https://github.com/CodeX3/Result_Downloader/blob/master/win2.0/Result%20downloader.pdf")
 menu_list = tk.Menu(menubar, tearoff=0)
 menu_list.add_command(label="About", command=about)
 menu_list.add_command(label="How-To-Use", command=how_to_use)
